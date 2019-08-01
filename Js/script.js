@@ -1,5 +1,6 @@
 // 'use strict';
 let money, time;
+
 function start() {
     money = prompt("Ваш бюджет на месяц?","");
     time = prompt("Введите дату в формате YYYY-MM-DD","");
@@ -61,11 +62,22 @@ let appData = {
     },
     chooseIncome: function() {
         let items = prompt("Что принесёт дополнительный доход? (Перечислите через запятую)","");
-        appData.income = items.split(', ');
-        appData.income.push(prompt('Может что то ещё?'));
-        appData.income.sort();
+        if (typeof(items) != 'string' || items != null || items.trim() != "") {
+            appData.income = items.split(', ');
+            appData.income.push(prompt('Может что то ещё?'));
+            appData.income.sort();
+        }
+        appData.income.forEach((key, item) => {
+            console.log("Способы доп. заработка: " + (item + 1) + ") - " + key);
+        });
     }
 };
+
+for (const key in appData) {
+    console.log("Наша программа включает в себя данные: " + key + " - "  + appData[key] );
+}
+
+
 // let i = 0;
 // while (i < 2) {
 //     let spending = prompt("Введите обязательную статью расходов в этом месяце", ""),
