@@ -8,7 +8,7 @@ function start() {
         money = prompt("Ваш бюджет на месяц?","");
     }
 }
-start();
+// start();
    
 let appData = {
     budget: money,
@@ -62,7 +62,10 @@ let appData = {
     },
     chooseIncome: function() {
         let items = prompt("Что принесёт дополнительный доход? (Перечислите через запятую)","");
-        if (typeof(items) != 'string' || items != null || items.trim() != "") {
+        console.log(isNaN(items));
+        if (typeof(items) != 'string' || items == null || items.trim() == "" || !isNaN(items)) {
+            console.log('Нельзя оставить поле пустым, вводить числа или отменить вопрос.');
+        } else {
             appData.income = items.split(', ');
             appData.income.push(prompt('Может что то ещё?'));
             appData.income.sort();
@@ -77,7 +80,7 @@ for (const key in appData) {
     console.log("Наша программа включает в себя данные: " + key + " - "  + appData[key] );
 }
 
-
+let x = 5; alert( x++ );
 // let i = 0;
 // while (i < 2) {
 //     let spending = prompt("Введите обязательную статью расходов в этом месяце", ""),
